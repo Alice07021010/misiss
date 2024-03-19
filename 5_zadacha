@@ -1,0 +1,28 @@
+import csv
+
+
+def generetion_hash(s:str):
+    alp='абвгдежзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+    d={l: i for i,l in enumerate(alp,1)}
+    p = 67
+    m =1e9+9
+    hash_value=0
+    p_pow=1
+    for c in s:
+        if c in d:  # Проверка наличия символа в алфавите
+            hash_value=(hash_value+d[c]*p_pow)%m 
+            p_pow=(p_pow*p)%m
+    return int(hash_value)
+
+
+students_with_hash=[]
+with open ('C:\\Users\\sulej\\Downloads\\students.csv',encoding='utf-8') as f:
+    reader=list(csv.DictReader(f,delimiter=',',quotechar='"'))
+    for row in reader :
+        row ['id'] =generetion_hash(row['Name'])
+        students_with_hash.append(row)
+
+with open ('C:\\Users\\sulej\\Downloads\\students_new_5_zadacha.csv', 'w' , newline='',encoding='utf8') as f:
+    w=csv.DictWriter(f,fieldnames=["id","Name","titleProject_id","class","score"])
+    w.writeheader()
+    w.writerows(students_with_hash)
