@@ -16,3 +16,4 @@ with open ('student_new.csv','w',encoding='utf8',newline='') as file:
     w=csv.writer(file)
     w.writerow(["id","Name","titleProject_id","class","score"])
     w.writerows(answer)
+    

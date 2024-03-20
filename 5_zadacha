@@ -1,6 +1,4 @@
 import csv
-
-
 def generetion_hash(s:str):
     alp='абвгдежзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
     d={l: i for i,l in enumerate(alp,1)}
